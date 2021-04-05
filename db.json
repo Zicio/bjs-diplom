@@ -67,10 +67,10 @@
       "password": "as",
       "id": 6,
       "balance": {
-        "RUB": 0,
-        "USD": 0,
-        "EUR": 0,
-        "NTC": 0
+        "RUB": 310,
+        "USD": 2,
+        "EUR": 11,
+        "NTC": 500
       }
     }
   ],
