@@ -2,7 +2,6 @@
 const userForm = new UserForm();
 userForm.loginFormCallback = (data) => { 
   const loginUser = (response) => {
-    console.log(response);
     if (!response.success) {
       return userForm.setLoginErrorMessage(response.error);
     }
@@ -13,7 +12,6 @@ userForm.loginFormCallback = (data) => {
 
 userForm.registerFormCallback = (data) => {
   const registerUser = (response) => {
-    console.log(response);
     if (!response.success) {
       return userForm.setRegisterErrorMessage(response.error);
     }
