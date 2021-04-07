@@ -38,10 +38,10 @@ const moneyManager = new MoneyManager();
 moneyManager.addMoneyCallback = ({currency, amount}) => {
     const checkForAddMoney = (response) => {
         if (!response.success) {
-            return moneyManager.setMessage(response, response.error);
+            return moneyManager.setMessage(response.success, response.error);
         }
         ProfileWidget.showProfile(response.data);
-        moneyManager.setMessage(response, 'Деньги успешно зачислены на Ваш баланс');
+        moneyManager.setMessage(response.success, 'Деньги успешно зачислены на Ваш баланс');
         return;
     }
     return ApiConnector.addMoney({currency, amount}, checkForAddMoney);
@@ -50,10 +50,10 @@ moneyManager.addMoneyCallback = ({currency, amount}) => {
 moneyManager.conversionMoneyCallback = ({ fromCurrency, targetCurrency, fromAmount }) => {
     const checkForConversionMoney = (response) => {
         if (!response.success) {
-            return moneyManager.setMessage(response, response.error);
+            return moneyManager.setMessage(response.success, response.error);
         }
         ProfileWidget.showProfile(response.data);
-        moneyManager.setMessage(response, 'Деньги успешно конвертированы');
+        moneyManager.setMessage(response.success, 'Деньги успешно конвертированы');
         return;
     }
     return ApiConnector.convertMoney({ fromCurrency, targetCurrency, fromAmount }, checkForConversionMoney);
@@ -62,10 +62,10 @@ moneyManager.conversionMoneyCallback = ({ fromCurrency, targetCurrency, fromAmou
 moneyManager.sendMoneyCallback = ({ to, currency, amount }) => {
     const checkForSendMoney = (response) => {
         if (!response.success) {
-            return moneyManager.setMessage(response, response.error);
+            return moneyManager.setMessage(response.success, response.error);
         }
         ProfileWidget.showProfile(response.data);
-        moneyManager.setMessage(response, 'Деньги успешно переведены');
+        moneyManager.setMessage(response.success, 'Деньги успешно переведены');
         return;
     }
     return ApiConnector.transferMoney({ to, currency, amount }, checkForSendMoney);
@@ -86,10 +86,10 @@ ApiConnector.getFavorites(getFavoriteList);
 favoritesWidget.addUserCallback = ({ id, name }) => {
     const addNewFavoritesUser = (response) => {
         if(!response.success) {
-            return favoritesWidget.setMessage(response, response.error);
+            return favoritesWidget.setMessage(response.success, response.error);
         }
         getFavoriteList(response);
-        favoritesWidget.setMessage(response, `Пользователь ${name} успешно добавлен в список избранных`);
+        favoritesWidget.setMessage(response.success, `Пользователь ${name} успешно добавлен в список избранных`);
         return;
     }
     return ApiConnector.addUserToFavorites({ id, name }, addNewFavoritesUser);
@@ -98,10 +98,10 @@ favoritesWidget.addUserCallback = ({ id, name }) => {
 favoritesWidget.removeUserCallback = (id) => {
     const removeNewFavoritesUser = (response) => {
         if(!response.success) {
-            return favoritesWidget.setMessage(response, response.error);
+            return favoritesWidget.setMessage(response.success, response.error);
         }
         getFavoriteList(response);
-        favoritesWidget.setMessage(response, 'Пользователь успешно удалён из списка избранных');
+        favoritesWidget.setMessage(response.success, 'Пользователь успешно удалён из списка избранных');
         return;
     }
     return ApiConnector.removeUserFromFavorites(id, removeNewFavoritesUser);
